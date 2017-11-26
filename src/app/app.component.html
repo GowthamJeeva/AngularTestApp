@@ -1,0 +1,40 @@
+
+<button type="button" class="btn btn-info" 
+        (click)="openModal(template)">Add Player Name</button>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" 
+                aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <form>
+      <div [formGroup] = "userForm">
+  <div class="form-group" >
+    <label for="name">Employee name:</label>
+    <input type="text" class="form-control" formControlName="name" id="name">
+     <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
+            Name is Required
+          </div>
+          <div *ngIf="userForm.get('name').hasError('pattern') && userForm.get('name').touched" class="errorStyle">
+            Invalid Name
+          </div>
+  </div>
+  <div class="form-group">
+    <label for="code">Employee code</label>
+    <input type="password" class="form-control" id="code" formControlName="code">
+     <div *ngIf="userForm.get('code').hasError('required') && userForm.get('code').touched" class="errorStyle">
+            Name is Required
+          </div>
+          <div *ngIf="userForm.get('code').hasError('pattern') && userForm.get('code').touched" class="errorStyle">
+            Invalid Name
+          </div>
+  </div>
+</div>
+  <button type="submit" class="btn btn-default" [disabled]="!userForm.valid" (click)="save()">Submit</button>
+</form> 
+    </div>
+</ng-template>
