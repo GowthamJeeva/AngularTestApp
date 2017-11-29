@@ -1,7 +1,35 @@
+<h1 class="centre">Employees Details Management -- <i>For Sample</i></h1>
+<button type="button" class="btn btn-basic" 
+        (click)="openModal(template)">Add Employee</button>
+<button type="button" class="btn btn-basic" 
+        (click)="showAll()">View Employees</button>
 
-<button type="button" class="btn btn-info" 
-        (click)="openModal(template)">Add Player Name</button>
 
+<div *ngIf = "employeeData" >
+  <div class="table-responsive" *ngIf = "employeeData.length>0">
+   <h3> List of Employees</h3>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+      <th>Name</th>
+      <th>Code</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of employeeData">
+        <td>{{data.name}}</td>
+        <td>{{data.code}}</td>
+        <td><button type="button" class="btn btn-info" 
+        (click)="editEmployee(template,data)">Edit Employee</button>
+      </td><td>
+<button type="button" class="btn btn-danger" 
+        (click)="deleteEmployee(data)">Delete Employee</button></td>
+      </tr>
+      </tbody>  
+  </table>
+</div>
+</div>
 <ng-template #template>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Modal</h4>
@@ -25,7 +53,7 @@
   </div>
   <div class="form-group">
     <label for="code">Employee code</label>
-    <input type="password" class="form-control" id="code" formControlName="code">
+    <input type="text" class="form-control" id="code" formControlName="code" [readonly]="action">
      <div *ngIf="userForm.get('code').hasError('required') && userForm.get('code').touched" class="errorStyle">
             Name is Required
           </div>
@@ -38,3 +66,15 @@
 </form> 
     </div>
 </ng-template>
+
+<div *ngIf="autoClose == true">
+<div *ngIf="responseData" class="alert alert-success alert-dismissable fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+<strong>Success!</strong>{{responseData}}
+</div>
+<div *ngIf="responseDataFailure" class="alert alert-danger alert-dismissable fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+<strong>Failure!</strong>{{responseData}}
+</div>
+</div>

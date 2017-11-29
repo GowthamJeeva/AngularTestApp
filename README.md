@@ -1,3 +1,19 @@
+Working Procedure:
+
+1.clone the project or download it.
+ 2.Install Angular CLI globally(npm install -g @angular/cli) from nodeJS cmd,make sure you have NodeJs installed,you may need admin rights.
+  3. Goto project root location(where bin,src and other folders are there).
+  4.Run "npm install" from nodejs cmd it will take time to install the project dependencies.
+  5.Run "ng build".
+  6.After step 5 gets completed goto bin->services and run node webapp.service.js
+  7.Run "localhost:6002" in browser and check the functionality.
+
+  Note:For every changes in application you made,again do from steps 5(if you are not using 'ng build --watch' and 'nodemon webapp.service.js' - it will load the changes automatically)	
+
+
+==============================================================================
+
+
 # Test3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.4.
